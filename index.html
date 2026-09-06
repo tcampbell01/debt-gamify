@@ -17,6 +17,7 @@
       --line:#d9ddd5; --green:#215c42; --green2:#3d8565; --mint:#dceade;
       --amber:#a8661b; --amber-bg:#f7e8c8; --red:#a13f36; --red-bg:#f4dcd7;
       --blue:#315e74; --blue-bg:#dce9ee; --shadow:0 16px 40px rgba(30,45,35,.08);
+      --violet:#634e8f; --violet-bg:#ebe5f6; --gold:#d2932d; --night:#213229;
     }
     *{box-sizing:border-box}
     body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
@@ -33,7 +34,10 @@
     .notice strong{color:#4e3a13}.notice button{border:0;background:transparent;color:inherit;text-decoration:underline;cursor:pointer}
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
     .card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:21px}
-    .cash{grid-column:span 8}.plan{grid-column:span 4}.debts{grid-column:span 8}.activity{grid-column:span 4}
+    .quest-board{grid-column:1/-1;background:var(--night);color:#f8f5eb;border-color:#344a3d;overflow:hidden;position:relative}.cash{grid-column:span 8}.plan{grid-column:span 4}.debts{grid-column:span 8}.activity{grid-column:span 4}
+    .quest-board:after{content:"";position:absolute;width:280px;height:280px;right:-90px;top:-130px;border:42px solid rgba(255,255,255,.035);border-radius:50%;pointer-events:none}
+    .player-row{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:start}.level-tag{display:inline-flex;align-items:center;gap:8px;color:#d5dfd7;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase}.level-orb{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:var(--gold);color:#2c2414;font-size:15px}.quest-board h2{font-size:28px;margin-top:12px}.xp-label{display:flex;justify-content:space-between;color:#c4d0c7;font-size:12px;margin:14px 0 6px}.xp-track{height:10px;background:#354a3e;border-radius:20px;overflow:hidden}.xp-track span{display:block;height:100%;background:linear-gradient(90deg,#d2932d,#f1c463);border-radius:20px}.streak{text-align:right;color:#d5dfd7;font-size:12px}.streak strong{display:block;font:700 25px/1.1 Georgia,serif;color:white;margin-bottom:5px}
+    .game-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:15px;margin-top:20px}.boss,.quests{border:1px solid #405849;background:rgba(255,255,255,.045);border-radius:14px;padding:16px}.game-title{display:flex;justify-content:space-between;gap:12px;font-weight:800}.game-title small{font-weight:500;color:#b7c5bb}.boss-name{font:700 23px/1.15 Georgia,serif;margin:12px 0 2px}.boss-health{display:flex;justify-content:space-between;color:#bdc9c0;font-size:12px;margin:10px 0 5px}.health-track{height:15px;background:#3b5043;border:2px solid #53695a;border-radius:20px;overflow:hidden}.health-track span{display:block;height:100%;background:linear-gradient(90deg,#d2932d,#e5af55);border-radius:20px}.reward{margin-top:11px;color:#e2c889;font-size:12px}.quest{display:grid;grid-template-columns:25px 1fr auto;gap:9px;align-items:center;margin-top:11px;font-size:12px}.quest-check{width:22px;height:22px;display:grid;place-items:center;border-radius:7px;border:1px solid #66806d;color:#9db1a2}.quest.done .quest-check{background:#4c8766;border-color:#4c8766;color:white}.quest.done .quest-name{text-decoration:line-through;color:#9fb0a4}.quest-xp{color:#e2c889;font-weight:800}
     .card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
     h2{font:700 21px/1.2 Georgia,serif;margin:0}.kicker{font-size:12px;color:var(--muted);margin-top:4px}
     .month{font-weight:700;font-size:13px;padding:7px 10px;background:#edf1eb;border-radius:10px}
@@ -61,7 +65,7 @@
     footer{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font-size:12px;margin-top:18px;padding:0 4px}
     .mobile-nav{display:none}.mobile-action{border:0;background:var(--green);color:white;border-radius:11px;padding:9px 12px;font-weight:800;cursor:pointer}
     .fatal{max-width:720px;margin:80px auto;background:white;border:1px solid var(--red);border-radius:16px;padding:24px;color:var(--red)}
-    @media(max-width:850px){.cash,.plan,.debts,.activity{grid-column:1/-1}.cash-layout{grid-template-columns:1fr}header{display:block}.status{text-align:left;margin-top:14px}}
+    @media(max-width:850px){.cash,.plan,.debts,.activity{grid-column:1/-1}.cash-layout,.game-grid{grid-template-columns:1fr}header{display:block}.status{text-align:left;margin-top:14px}}
     @media(max-width:520px){body{padding-bottom:74px}.shell{padding:20px 14px 40px}.card{padding:17px}.notice{align-items:flex-start}.bar-row{grid-template-columns:86px 1fr}.bar-row strong{grid-column:2;text-align:right}.debt-item{grid-template-columns:34px 1fr}.debt-amount{grid-column:2;text-align:left}.cash-layout{gap:14px}footer{display:block}.mobile-nav{position:fixed;z-index:20;display:grid;grid-template-columns:repeat(4,1fr);left:10px;right:10px;bottom:10px;padding:7px;background:rgba(255,253,248,.94);backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:0 10px 30px rgba(30,45,35,.18);border-radius:16px}.mobile-nav a{display:grid;place-items:center;gap:1px;text-decoration:none;color:var(--muted);font-size:10px;font-weight:800;padding:4px}.mobile-nav a span{font-size:19px;line-height:1}.mobile-action{width:100%;margin-top:10px}}
   </style>
 </head>
@@ -86,6 +90,19 @@
       { "name": "Subscriptions & other", "amount": 190 }
     ],
     "extraDebtPayment": 450
+  },
+  "gamification": {
+    "level": 4,
+    "title": "Momentum Builder",
+    "xp": 1240,
+    "nextLevelXp": 1500,
+    "streakMonths": 6,
+    "quests": [
+      { "name": "Make all minimum payments", "xp": 100, "done": true },
+      { "name": "Complete a weekly check-in", "xp": 25, "done": true },
+      { "name": "Pay an extra $450", "xp": 150, "done": false },
+      { "name": "Finish with positive cash flow", "xp": 100, "done": false }
+    ]
   },
   "debts": [
     { "name": "Credit Card A", "balance": 6840, "originalBalance": 9200, "apr": 24.99, "minimumPayment": 205, "dueDay": 14 },
@@ -141,11 +158,19 @@
       const p=project(data.debts||[],strategy);
       const max=Math.max(income,bills,minimums,extra,1);
       const alerts=(data.alerts||[]).slice(0,8);
+      const game=data.gamification||{};
+      const xp=Math.max(0,+game.xp||0), nextXp=Math.max(xp+1,+game.nextLevelXp||1000), xpPct=Math.min(100,xp/nextXp*100);
+      const boss=ordered[0];
+      const bossPaid=boss?Math.max(0,Math.min(100,(1-(+boss.balance||0)/(+boss.originalBalance||+boss.balance||1))*100)):100;
       const checked=data.lastChecked?new Date(data.lastChecked).toLocaleString('en-US',{dateStyle:'medium',timeStyle:'short'}):'Never';
       document.getElementById('app').innerHTML = `
         <header><div><div class="eyebrow">Personal finance, made visible</div><h1>${esc(data.profile.name||'Your')} debt &amp; cash flow</h1><p class="subtitle">One calm view of what comes in, what goes out, and the clearest path to becoming debt-free.</p></div><div class="status"><strong><span class="dot"></span>Last checked</strong>${esc(checked)}</div></header>
         ${data.profile.isPlaceholder?`<div class="notice"><span><strong>Demo numbers are showing.</strong> Replace the marked JSON data before making financial decisions.</span><button onclick="document.getElementById('setup').open=true;document.getElementById('setup').scrollIntoView({behavior:'smooth'})">How to update</button></div>`:''}
         <section class="grid" id="overview">
+          <article class="card quest-board" id="quest"><div class="player-row"><div><div class="level-tag"><span class="level-orb">${esc(game.level||1)}</span> Level ${esc(game.level||1)} · ${esc(game.title||'Getting Started')}</div><h2>Your debt-free quest</h2><div class="xp-label"><span>${xp.toLocaleString()} XP</span><span>${(nextXp-xp).toLocaleString()} XP to Level ${(Number(game.level)||1)+1}</span></div><div class="xp-track" aria-label="${xpPct.toFixed(0)}% to next level"><span style="width:${xpPct}%"></span></div></div><div class="streak"><strong>🔥 ${esc(game.streakMonths||0)} months</strong>On-time payment streak</div></div>
+            <div class="game-grid"><div class="boss"><div class="game-title"><span>Current boss</span><small>${bossPaid.toFixed(0)}% defeated</small></div>${boss?`<div class="boss-name">${esc(boss.name)}</div><div class="boss-health"><span>${money(boss.balance)} remaining</span><span>${money(boss.originalBalance)} started</span></div><div class="health-track"><span style="width:${bossPaid}%"></span></div><div class="reward">🏆 Next reward unlocks at 50% defeated</div>`:'<div class="empty">All bosses defeated. You’re debt-free!</div>'}</div>
+            <div class="quests"><div class="game-title"><span>This month’s quests</span><small>${(game.quests||[]).filter(q=>q.done).length}/${(game.quests||[]).length} complete</small></div>${(game.quests||[]).map(q=>`<div class="quest ${q.done?'done':''}"><span class="quest-check">${q.done?'✓':'○'}</span><span class="quest-name">${esc(q.name)}</span><span class="quest-xp">+${esc(q.xp)} XP</span></div>`).join('')}</div></div>
+          </article>
           <article class="card cash"><div class="card-head"><div><h2>Monthly cash position</h2><div class="kicker">After planned spending and debt payments</div></div><span class="month">${esc(data.monthly.label||'Current month')}</span></div>
             <div class="cash-layout"><div><div class="balance-label">Available after everything</div><div class="balance ${remaining<0?'negative':'positive'}">${money(remaining)}</div><div class="balance-note">${remaining<0?`Your plan is short by ${money(Math.abs(remaining))}. Reduce the extra debt payment or expenses before the month begins.`:`You have ${money(remaining)} of breathing room after the planned extra debt payment.`}</div></div>
             <div>${[['Income',income,'income'],['Bills',bills,'bill'],['Debt minimums',minimums,'minimum'],['Extra payoff',extra,'extra']].map(x=>`<div class="bar-row"><span>${x[0]}</span><div class="track"><div class="fill ${x[2]}" style="width:${Math.max(3,x[1]/max*100)}%"></div></div><strong>${money(x[1])}</strong></div>`).join('')}</div></div>
@@ -165,7 +190,7 @@
         <details id="setup"><summary>Make this ledger yours</summary><ol><li>Open this file in a plain-text editor.</li><li>Replace the values between <code>LEDGER_DATA_START</code> and <code>LEDGER_DATA_END</code>. Keep valid JSON formatting.</li><li>Set <code>isPlaceholder</code> to <code>false</code>, save, and refresh this page.</li></ol><p>The strategy buttons preview both methods. To set the default for future visits, change <code>profile.strategy</code> to <code>avalanche</code> or <code>snowball</code>.</p><p><strong>On mobile:</strong> when this folder is served from a secure website, use your browser's “Add to Home Screen” option. The app will then open full-screen and keep its last loaded dashboard available offline. Scheduled email checks and phone alerts still come from your automation app.</p><button class="mobile-action" id="share-ledger">Share dashboard</button></details>
         <footer><span>Private by design · all data stays in this file</span><span>Projection is an estimate, not financial advice.</span></footer>`;
       document.querySelector('.mobile-nav')?.remove();
-      document.body.insertAdjacentHTML('beforeend','<nav class="mobile-nav" aria-label="Ledger sections"><a href="#overview"><span>⌂</span>Overview</a><a href="#debts"><span>↘</span>Debts</a><a href="#activity"><span>◷</span>Activity</a><a href="#setup"><span>⚙</span>Setup</a></nav>');
+      document.body.insertAdjacentHTML('beforeend','<nav class="mobile-nav" aria-label="Ledger sections"><a href="#quest"><span>✦</span>Quest</a><a href="#debts"><span>↘</span>Debts</a><a href="#activity"><span>◷</span>Activity</a><a href="#setup"><span>⚙</span>Setup</a></nav>');
       document.querySelectorAll('[data-strategy]').forEach(btn=>btn.addEventListener('click',()=>render(btn.dataset.strategy)));
       document.getElementById('share-ledger')?.addEventListener('click', async () => {
         const share={title:'Debt & Cash Flow Ledger',text:`Current debt: ${money(totalDebt)} · projected debt-free: ${p.finish}`};
@@ -180,4 +205,3 @@
   </script>
 </body>
 </html>
-

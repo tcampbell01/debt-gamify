@@ -1,0 +1,13 @@
+{
+  "name": "Debt & Cash Flow Ledger",
+  "short_name": "My Ledger",
+  "description": "A private dashboard for monthly cash flow and debt payoff planning.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f0e8",
+  "theme_color": "#215c42",
+  "icons": [
+    { "src": "ledger-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

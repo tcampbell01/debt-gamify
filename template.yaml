@@ -1,0 +1,54 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Debt Hero Plaid API
+
+Parameters:
+  PlaidSecretArn:
+    Type: String
+    Description: ARN of a Secrets Manager secret containing clientId and secret
+  AllowedOrigin:
+    Type: String
+    Default: http://localhost:8000
+    Description: Exact Amplify or localhost origin allowed to call the API
+
+Resources:
+  DebtHeroApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowOrigins: [!Ref AllowedOrigin]
+        AllowHeaders: [content-type, authorization]
+        AllowMethods: [GET, POST, OPTIONS]
+
+  PlaidFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: backend/
+      Handler: src/app.handler
+      Runtime: nodejs22.x
+      Timeout: 30
+      MemorySize: 256
+      Environment:
+        Variables:
+          PLAID_SECRET_ARN: !Ref PlaidSecretArn
+          PLAID_ENV: sandbox
+          ALLOWED_ORIGIN: !Ref AllowedOrigin
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - secretsmanager:GetSecretValue
+                - secretsmanager:PutSecretValue
+              Resource: !Ref PlaidSecretArn
+      Events:
+        Api:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref DebtHeroApi
+            Path: /plaid/{proxy+}
+            Method: ANY
+
+Outputs:
+  ApiUrl:
+    Description: Add this value to appConfig.plaidApiBase in index.html
+    Value: !Sub https://${DebtHeroApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}

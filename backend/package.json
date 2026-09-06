@@ -1,0 +1,13 @@
+{
+  "name": "debt-gamify-aws-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check src/app.mjs"
+  },
+  "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.883.0",
+    "plaid": "^47.0.0"
+  }
+}

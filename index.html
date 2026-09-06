@@ -101,7 +101,11 @@
       { "name": "Make all minimum payments", "xp": 100, "done": true },
       { "name": "Complete a weekly check-in", "xp": 25, "done": true },
       { "name": "Pay an extra $450", "xp": 150, "done": false },
-      { "name": "Finish with positive cash flow", "xp": 100, "done": false }
+      { "name": "Finish with positive cash flow", "xp": 100, "done": false },
+      { "name": "Review every new statement", "xp": 50, "done": true },
+      { "name": "Avoid late fees this month", "xp": 100, "done": false },
+      { "name": "Complete one no-spend day", "xp": 40, "done": false },
+      { "name": "Add $50 to the emergency buffer", "xp": 75, "done": false }
     ]
   },
   "debts": [
@@ -169,7 +173,7 @@
         <section class="grid" id="overview">
           <article class="card quest-board" id="quest"><div class="player-row"><div><div class="level-tag"><span class="level-orb">${esc(game.level||1)}</span> Hero Rank ${esc(game.level||1)} · ${esc(game.title||'Rising Hero')}</div><h2>Your Debt Defense Mission</h2><div class="xp-label"><span>${xp.toLocaleString()} Hero Points</span><span>${(nextXp-xp).toLocaleString()} to Rank ${(Number(game.level)||1)+1}</span></div><div class="xp-track" aria-label="${xpPct.toFixed(0)}% to next hero rank"><span style="width:${xpPct}%"></span></div></div><div class="streak"><strong>⚡ ${esc(game.streakMonths||0)} months</strong>Power streak active</div></div>
             <div class="game-grid"><div class="boss"><div class="game-title"><span>⚠ Debt Villain</span><small>${bossPaid.toFixed(0)}% defeated</small></div>${boss?`<div class="boss-name">${esc(boss.name)}</div><div class="boss-health"><span>${money(boss.balance)} power remaining</span><span>${money(boss.originalBalance)} original threat</span></div><div class="health-track"><span style="width:${bossPaid}%"></span></div><div class="reward">★ Power-up unlocks at 50% defeated</div>`:'<div class="empty">All villains defeated. The city is debt-free!</div>'}</div>
-            <div class="quests"><div class="game-title"><span>Monthly Missions</span><small>${(game.quests||[]).filter(q=>q.done).length}/${(game.quests||[]).length} complete</small></div>${(game.quests||[]).map(q=>`<div class="quest ${q.done?'done':''}"><span class="quest-check">${q.done?'✓':'○'}</span><span class="quest-name">${esc(q.name)}</span><span class="quest-xp">+${esc(q.xp)} HP</span></div>`).join('')}</div></div>
+            <div class="quests"><div class="game-title"><span>Monthly Missions</span><small>${(game.quests||[]).filter(q=>q.done).length}/${(game.quests||[]).length} complete</small></div>${(game.quests||[]).map(q=>`<div class="quest ${q.done?'done':''}"><span class="quest-check">${q.done?'✓':'○'}</span><span class="quest-name">${esc(q.name)}</span><span class="quest-xp">+${esc(q.xp)} HP</span></div>`).join('')}<div class="reward">★ Complete 6 missions to earn a Streak Shield</div></div></div>
           </article>
           <article class="card cash"><div class="card-head"><div><h2>Monthly cash position</h2><div class="kicker">After planned spending and debt payments</div></div><span class="month">${esc(data.monthly.label||'Current month')}</span></div>
             <div class="cash-layout"><div><div class="balance-label">Available after everything</div><div class="balance ${remaining<0?'negative':'positive'}">${money(remaining)}</div><div class="balance-note">${remaining<0?`Your plan is short by ${money(Math.abs(remaining))}. Reduce the extra debt payment or expenses before the month begins.`:`You have ${money(remaining)} of breathing room after the planned extra debt payment.`}</div></div>

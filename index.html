@@ -34,7 +34,7 @@
     .notice strong{color:#4e3a13}.notice button{border:0;background:transparent;color:inherit;text-decoration:underline;cursor:pointer}
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
     .card{background:var(--card);border:2px solid var(--line);border-radius:12px;box-shadow:5px 6px 0 rgba(18,59,120,.12);padding:21px}
-    .quest-board{grid-column:1/-1;background:linear-gradient(125deg,#0c2859 0%,#174b9a 66%,#c5283d 150%);color:#f8f5eb;border-color:#071b3c;overflow:hidden;position:relative;box-shadow:7px 8px 0 rgba(197,40,61,.28)}.cash{grid-column:span 8}.plan{grid-column:span 4}.debts{grid-column:span 8}.activity{grid-column:span 4}
+    .quest-board,.budget,.payments{grid-column:1/-1}.quest-board{background:linear-gradient(125deg,#0c2859 0%,#174b9a 66%,#c5283d 150%);color:#f8f5eb;border-color:#071b3c;overflow:hidden;position:relative;box-shadow:7px 8px 0 rgba(197,40,61,.28)}.cash{grid-column:span 8}.plan{grid-column:span 4}.debts{grid-column:span 8}.activity{grid-column:span 4}
     .quest-board:after{content:"HERO MODE";position:absolute;right:-30px;top:32px;transform:rotate(18deg);font:900 47px/1 Impact,"Arial Black",sans-serif;color:rgba(255,255,255,.055);letter-spacing:.06em;pointer-events:none}
     .player-row{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:start}.level-tag{display:inline-flex;align-items:center;gap:8px;color:#dbe8ff;font-weight:900;font-size:12px;letter-spacing:.08em;text-transform:uppercase}.level-orb{width:38px;height:38px;display:grid;place-items:center;clip-path:polygon(50% 0,61% 34%,98% 35%,68% 56%,79% 94%,50% 71%,21% 94%,32% 56%,2% 35%,39% 34%);background:var(--gold);color:#162447;font-size:14px}.quest-board h2{font:900 30px/1.05 Impact,"Arial Black",sans-serif;text-transform:uppercase;letter-spacing:.04em;margin-top:12px}.xp-label{display:flex;justify-content:space-between;color:#d3dffa;font-size:12px;margin:14px 0 6px}.xp-track{height:12px;background:#081d41;border:2px solid #5378b4;border-radius:2px;overflow:hidden}.xp-track span{display:block;height:100%;background:linear-gradient(90deg,#f3bd32,#ffe890)}.streak{text-align:right;color:#d5e1f6;font-size:12px}.streak strong{display:block;font:900 25px/1.1 Impact,"Arial Black",sans-serif;color:white;margin-bottom:5px;letter-spacing:.03em}
     .game-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:15px;margin-top:20px}.boss,.quests{border:1px solid #557ab3;background:rgba(5,22,55,.35);border-radius:8px;padding:16px}.game-title{display:flex;justify-content:space-between;gap:12px;font-weight:900;text-transform:uppercase;letter-spacing:.05em}.game-title small{font-weight:600;color:#c0d1ed;letter-spacing:0;text-transform:none}.boss-name{font:900 24px/1.15 Impact,"Arial Black",sans-serif;text-transform:uppercase;letter-spacing:.04em;margin:12px 0 2px}.boss-health{display:flex;justify-content:space-between;color:#c7d6ef;font-size:12px;margin:10px 0 5px}.health-track{height:16px;background:#071a3a;border:2px solid #7c9bcb;border-radius:2px;overflow:hidden}.health-track span{display:block;height:100%;background:repeating-linear-gradient(-45deg,#c5283d,#c5283d 9px,#eb4d60 9px,#eb4d60 18px)}.reward{display:inline-block;margin-top:12px;background:#f3bd32;color:#18213b;padding:4px 8px;font-size:11px;font-weight:900;transform:skew(-5deg)}.quest{display:grid;grid-template-columns:25px 1fr auto;gap:9px;align-items:center;margin-top:11px;font-size:12px}.quest-check{width:22px;height:22px;display:grid;place-items:center;border-radius:2px;border:1px solid #7294c7;color:#acc1e2}.quest.done .quest-check{background:var(--red);border-color:#f26a79;color:white}.quest.done .quest-name{text-decoration:line-through;color:#9fb3d1}.quest-xp{color:#ffe07f;font-weight:900}
@@ -60,13 +60,15 @@
     .alert{display:grid;grid-template-columns:30px 1fr;gap:10px;padding:14px 0;border-top:1px solid var(--line)}.alert:first-of-type{border-top:0}
     .icon{width:28px;height:28px;display:grid;place-items:center;border-radius:9px;font-size:13px;font-weight:900}.icon.info{background:var(--blue-bg);color:var(--blue)}.icon.ok{background:var(--mint);color:var(--green)}.icon.warn{background:var(--amber-bg);color:var(--amber)}
     .alert p{margin:0;font-size:13px}.alert time{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+    .budget-layout{display:grid;grid-template-columns:1.35fr .65fr;gap:22px}.budget-list{border:1px solid var(--line);border-radius:9px;overflow:hidden}.budget-row{display:grid;grid-template-columns:1fr 130px 70px 34px;gap:12px;align-items:center;padding:12px 14px;border-top:1px solid var(--line)}.budget-row:first-child{border-top:0}.budget-name{font-weight:800}.budget-name small{display:block;color:var(--muted);font-weight:500}.budget-amount{text-align:right;font-weight:900}.budget-due{text-align:center;color:var(--muted);font-size:12px}.delete-budget{border:0;background:var(--red-bg);color:var(--red);width:28px;height:28px;border-radius:6px;cursor:pointer;font-weight:900}.budget-form{background:var(--blue-bg);border:1px solid #b8ccec;border-radius:9px;padding:15px}.budget-form h3{margin:0 0 12px;font-size:15px}.field{display:grid;gap:4px;margin-top:9px}.field label{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}.field input,.field select{width:100%;border:1px solid #aebed7;background:white;border-radius:7px;padding:9px;font:inherit;color:var(--ink)}.form-pair{display:grid;grid-template-columns:1fr 1fr;gap:9px}.add-budget{width:100%;margin-top:12px;border:0;border-radius:7px;background:var(--red);color:white;padding:10px;font-weight:900;cursor:pointer}.budget-summary{display:flex;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:2px solid var(--line)}.device-note{font-size:11px;color:var(--muted);margin:9px 0 0}
+    .payment-list{border:1px solid var(--line);border-radius:9px;overflow:hidden}.payment-row{display:grid;grid-template-columns:1.2fr 110px 150px 95px;gap:12px;align-items:center;padding:12px 14px;border-top:1px solid var(--line)}.payment-row:first-child{border-top:0}.payment-name{font-weight:800}.payment-name small{display:block;color:var(--muted);font-weight:500}.payment-value{text-align:right;font-weight:900}.category-select{border:1px solid #aebed7;background:white;border-radius:7px;padding:7px;color:var(--ink);font:inherit}.payment-status{border:0;border-radius:7px;padding:7px 8px;font-size:12px;font-weight:900;cursor:pointer}.payment-status.cleared{background:var(--mint);color:var(--blue)}.payment-status.pending{background:var(--amber-bg);color:#835b0b}.payment-totals{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.category-total{background:var(--blue-bg);color:var(--blue);padding:6px 9px;border-radius:7px;font-size:12px;font-weight:800}
     details{margin-top:16px;border:1px dashed #bfc7bf;border-radius:14px;padding:13px 15px;background:rgba(255,255,255,.35)}summary{cursor:pointer;font-weight:800;color:var(--green)}
     details p,details ol{color:var(--muted);font-size:13px}code{background:#e6e8e3;padding:2px 5px;border-radius:5px}
     footer{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font-size:12px;margin-top:18px;padding:0 4px}
     .mobile-nav{display:none}.mobile-action{border:0;background:var(--green);color:white;border-radius:11px;padding:9px 12px;font-weight:800;cursor:pointer}
     .fatal{max-width:720px;margin:80px auto;background:white;border:1px solid var(--red);border-radius:16px;padding:24px;color:var(--red)}
-    @media(max-width:850px){.cash,.plan,.debts,.activity{grid-column:1/-1}.cash-layout,.game-grid{grid-template-columns:1fr}header{display:block}.status{text-align:left;margin-top:14px}}
-    @media(max-width:520px){body{padding-bottom:74px}.shell{padding:20px 14px 40px}.card{padding:17px}.notice{align-items:flex-start}.bar-row{grid-template-columns:86px 1fr}.bar-row strong{grid-column:2;text-align:right}.debt-item{grid-template-columns:34px 1fr}.debt-amount{grid-column:2;text-align:left}.cash-layout{gap:14px}footer{display:block}.mobile-nav{position:fixed;z-index:20;display:grid;grid-template-columns:repeat(4,1fr);left:10px;right:10px;bottom:10px;padding:7px;background:rgba(255,253,248,.94);backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:0 10px 30px rgba(30,45,35,.18);border-radius:16px}.mobile-nav a{display:grid;place-items:center;gap:1px;text-decoration:none;color:var(--muted);font-size:10px;font-weight:800;padding:4px}.mobile-nav a span{font-size:19px;line-height:1}.mobile-action{width:100%;margin-top:10px}}
+    @media(max-width:850px){.cash,.plan,.debts,.activity{grid-column:1/-1}.cash-layout,.game-grid,.budget-layout{grid-template-columns:1fr}header{display:block}.status{text-align:left;margin-top:14px}}
+    @media(max-width:520px){body{padding-bottom:74px}.shell{padding:20px 14px 40px}.card{padding:17px}.notice{align-items:flex-start}.bar-row{grid-template-columns:86px 1fr}.bar-row strong{grid-column:2;text-align:right}.debt-item{grid-template-columns:34px 1fr}.debt-amount{grid-column:2;text-align:left}.cash-layout{gap:14px}.budget-row{grid-template-columns:1fr auto 28px}.budget-due{grid-column:1;text-align:left}.delete-budget{grid-column:3;grid-row:1}.payment-row{grid-template-columns:1fr auto}.payment-value{text-align:right}.category-select,.payment-status{width:100%}footer{display:block}.mobile-nav{position:fixed;z-index:20;display:grid;grid-template-columns:repeat(4,1fr);left:10px;right:10px;bottom:10px;padding:7px;background:rgba(255,253,248,.94);backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:0 10px 30px rgba(30,45,35,.18);border-radius:16px}.mobile-nav a{display:grid;place-items:center;gap:1px;text-decoration:none;color:var(--muted);font-size:10px;font-weight:800;padding:4px}.mobile-nav a span{font-size:19px;line-height:1}.mobile-action{width:100%;margin-top:10px}}
   </style>
 </head>
 <body>
@@ -83,11 +85,11 @@
       { "name": "Other income", "amount": 350 }
     ],
     "bills": [
-      { "name": "Housing", "amount": 1850 },
-      { "name": "Utilities & internet", "amount": 310 },
-      { "name": "Food & household", "amount": 680 },
-      { "name": "Transport & insurance", "amount": 570 },
-      { "name": "Subscriptions & other", "amount": 190 }
+      { "name": "Housing", "amount": 1850, "category": "Home", "dueDay": 1 },
+      { "name": "Utilities & internet", "amount": 310, "category": "Utilities", "dueDay": 10 },
+      { "name": "Food & household", "amount": 680, "category": "Essentials", "dueDay": 1 },
+      { "name": "Transport & insurance", "amount": 570, "category": "Transport", "dueDay": 16 },
+      { "name": "Subscriptions & other", "amount": 190, "category": "Other", "dueDay": 20 }
     ],
     "extraDebtPayment": 450
   },
@@ -113,6 +115,11 @@
     { "name": "Personal Loan", "balance": 11850, "originalBalance": 15000, "apr": 11.5, "minimumPayment": 392, "dueDay": 22 },
     { "name": "Credit Card B", "balance": 2350, "originalBalance": 4100, "apr": 18.9, "minimumPayment": 75, "dueDay": 8 }
   ],
+  "payments": [
+    { "name": "Electric Company", "amount": 142.18, "date": "2026-09-04", "category": "Utilities", "status": "cleared" },
+    { "name": "Neighborhood Market", "amount": 86.42, "date": "2026-09-05", "category": "Essentials", "status": "cleared" },
+    { "name": "Auto Insurance", "amount": 118.00, "date": "2026-09-06", "category": "Insurance", "status": "pending" }
+  ],
   "alerts": [
     { "type": "info", "message": "Sample data is loaded. Replace it with your real numbers before relying on this plan.", "date": "2026-09-06T09:00:00-04:00" },
     { "type": "ok", "message": "Dashboard created and ready for automation.", "date": "2026-09-06T08:45:00-04:00" }
@@ -132,14 +139,19 @@
       document.getElementById('app').innerHTML = `<div class="fatal"><h1>Ledger data needs attention</h1><p>The JSON between the LEDGER_DATA markers could not be read. Check commas, quotation marks, and brackets.</p><small>${escapeHtml(error.message)}</small></div>`;
       return;
     }
+    try {
+      const savedBudget=localStorage.getItem('debt-hero-budget-v1');
+      if(savedBudget) data.monthly.bills=JSON.parse(savedBudget);
+      const savedPayments=localStorage.getItem('debt-hero-payments-v1');
+      if(savedPayments) data.payments=JSON.parse(savedPayments);
+    } catch(error) { console.warn('Saved budget could not be loaded.'); }
 
     const money = n => new Intl.NumberFormat('en-US',{style:'currency',currency:data.profile.currency||'USD',maximumFractionDigits:0}).format(n||0);
     const sum = xs => xs.reduce((n,x)=>n+(Number(x.amount)||0),0);
     const esc = escapeHtml;
-    const income = sum(data.monthly.income||[]), bills = sum(data.monthly.bills||[]);
+    const income = sum(data.monthly.income||[]);
     const minimums = (data.debts||[]).reduce((n,d)=>n+(Number(d.minimumPayment)||0),0);
     const extra = Number(data.monthly.extraDebtPayment)||0;
-    const remaining = income-bills-minimums-extra;
     const totalDebt = (data.debts||[]).reduce((n,d)=>n+(Number(d.balance)||0),0);
 
     function project(debts, strategy) {
@@ -158,11 +170,15 @@
     }
 
     function render(strategy=data.profile.strategy||'avalanche') {
+      const bills=sum(data.monthly.bills||[]);
+      const remaining=income-bills-minimums-extra;
       const ordered=[...(data.debts||[])].sort((a,b)=>strategy==='snowball'?(+a.balance)-(+b.balance):(+b.apr)-(+a.apr));
       const p=project(data.debts||[],strategy);
       const max=Math.max(income,bills,minimums,extra,1);
       const alerts=(data.alerts||[]).slice(0,8);
       const game=data.gamification||{};
+      const paymentCategories=[...new Set(['Home','Utilities','Essentials','Transport','Insurance','Subscriptions','Debt Payment','Other',...(data.monthly.bills||[]).map(b=>b.category).filter(Boolean)])];
+      const clearedByCategory=(data.payments||[]).filter(p=>p.status==='cleared').reduce((totals,p)=>{totals[p.category]=(totals[p.category]||0)+Number(p.amount||0);return totals;},{});
       const xp=Math.max(0,+game.xp||0), nextXp=Math.max(xp+1,+game.nextLevelXp||1000), xpPct=Math.min(100,xp/nextXp*100);
       const boss=ordered[0];
       const bossPaid=boss?Math.max(0,Math.min(100,(1-(+boss.balance||0)/(+boss.originalBalance||+boss.balance||1))*100)):100;
@@ -184,6 +200,14 @@
             <div class="balance-label">Projected debt-free</div><div class="big-date">${esc(p.finish)}</div><div class="kicker">${p.months} months at current payments</div>
             <div class="metric"><span>Current debt</span><strong>${money(totalDebt)}</strong></div><div class="metric"><span>Projected interest</span><strong>${money(p.interest)}</strong></div>
           </article>
+          <article class="card budget" id="budget"><div class="card-head"><div><h2>Budget mission planner</h2><div class="kicker">Add the expenses your cash must cover before attacking debt</div></div><strong>${money(bills)}/month</strong></div>
+            <div class="budget-layout"><div><div class="budget-list">${(data.monthly.bills||[]).length?(data.monthly.bills||[]).map((b,i)=>`<div class="budget-row"><div class="budget-name">${esc(b.name)}<small>${esc(b.category||'Other')}</small></div><div class="budget-amount">${money(b.amount)}</div><div class="budget-due">Due day ${esc(b.dueDay||'—')}</div><button class="delete-budget" data-budget-index="${i}" aria-label="Remove ${esc(b.name)}">×</button></div>`).join(''):'<div class="empty">No budget items yet. Add your first expense.</div>'}</div><div class="budget-summary"><span>Monthly budget total</span><strong>${money(bills)}</strong></div></div>
+            <form class="budget-form" id="budget-form"><h3>Add a budget item</h3><div class="field"><label for="budget-name">Expense name</label><input id="budget-name" name="name" placeholder="e.g. Car insurance" required maxlength="60"></div><div class="form-pair"><div class="field"><label for="budget-amount">Monthly amount</label><input id="budget-amount" name="amount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="0.00" required></div><div class="field"><label for="budget-day">Due day</label><input id="budget-day" name="dueDay" type="number" inputmode="numeric" min="1" max="31" placeholder="15" required></div></div><div class="field"><label for="budget-category">Category</label><select id="budget-category" name="category"><option>Home</option><option>Utilities</option><option>Essentials</option><option>Transport</option><option>Insurance</option><option>Subscriptions</option><option>Other</option></select></div><button class="add-budget" type="submit">+ Add to mission plan</button><p class="device-note">Saved privately in this browser on this device. It is not committed to GitHub.</p></form></div>
+          </article>
+          <article class="card payments" id="payments"><div class="card-head"><div><h2>Payment inbox</h2><div class="kicker">Confirm what cleared and move each payment into its budget category</div></div><strong>${(data.payments||[]).filter(p=>p.status==='cleared').length} cleared</strong></div>
+            <div class="payment-list">${(data.payments||[]).length?(data.payments||[]).map((p,i)=>`<div class="payment-row"><div class="payment-name">${esc(p.name)}<small>${esc(new Date(p.date+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'}))}</small></div><div class="payment-value">${money(p.amount)}</div><select class="category-select" data-payment-category="${i}" aria-label="Category for ${esc(p.name)}">${paymentCategories.map(c=>`<option ${c===p.category?'selected':''}>${esc(c)}</option>`).join('')}</select><button class="payment-status ${p.status==='cleared'?'cleared':'pending'}" data-payment-status="${i}">${p.status==='cleared'?'✓ Cleared':'◷ Pending'}</button></div>`).join(''):'<div class="empty">No payments found yet.</div>'}</div>
+            <div class="payment-totals">${Object.entries(clearedByCategory).map(([category,total])=>`<span class="category-total">${esc(category)} · ${money(total)}</span>`).join('')}</div><p class="device-note">Changing a category or status saves it privately on this device. Payments are tracked against categories but are not subtracted twice from your planned monthly budget.</p>
+          </article>
           <article class="card debts" id="debts"><div class="card-head"><div><h2>Payoff order</h2><div class="kicker">${strategy==='avalanche'?'Highest APR first · minimizes interest':'Smallest balance first · builds momentum'}</div></div><strong>${ordered.length} debts</strong></div>
             ${ordered.length?ordered.map((d,i)=>{const paid=Math.max(0,Math.min(100,(1-(+d.balance||0)/(+d.originalBalance||+d.balance||1))*100));return `<div class="debt-item"><div class="rank">${i+1}</div><div><div class="debt-name">${esc(d.name)}</div><div class="debt-meta">${(+d.apr||0).toFixed(2)}% APR · ${money(d.minimumPayment)} minimum · due day ${esc(d.dueDay||'—')}</div><div class="progress" aria-label="${paid.toFixed(0)}% paid"><span style="width:${paid}%"></span></div></div><div class="debt-amount">${money(d.balance)}<small>${paid.toFixed(0)}% paid</small></div></div>`}).join(''):'<div class="empty">No debts added yet.</div>'}
           </article>
@@ -194,8 +218,34 @@
         <details id="setup"><summary>Make this ledger yours</summary><ol><li>Open this file in a plain-text editor.</li><li>Replace the values between <code>LEDGER_DATA_START</code> and <code>LEDGER_DATA_END</code>. Keep valid JSON formatting.</li><li>Set <code>isPlaceholder</code> to <code>false</code>, save, and refresh this page.</li></ol><p>The strategy buttons preview both methods. To set the default for future visits, change <code>profile.strategy</code> to <code>avalanche</code> or <code>snowball</code>.</p><p><strong>On mobile:</strong> when this folder is served from a secure website, use your browser's “Add to Home Screen” option. The app will then open full-screen and keep its last loaded dashboard available offline. Scheduled email checks and phone alerts still come from your automation app.</p><button class="mobile-action" id="share-ledger">Share dashboard</button></details>
         <footer><span>Private by design · all data stays in this file</span><span>Projection is an estimate, not financial advice.</span></footer>`;
       document.querySelector('.mobile-nav')?.remove();
-      document.body.insertAdjacentHTML('beforeend','<nav class="mobile-nav" aria-label="Ledger sections"><a href="#quest"><span>✦</span>Quest</a><a href="#debts"><span>↘</span>Debts</a><a href="#activity"><span>◷</span>Activity</a><a href="#setup"><span>⚙</span>Setup</a></nav>');
+      document.body.insertAdjacentHTML('beforeend','<nav class="mobile-nav" aria-label="Ledger sections"><a href="#quest"><span>✦</span>Quest</a><a href="#budget"><span>▤</span>Budget</a><a href="#debts"><span>↘</span>Debts</a><a href="#activity"><span>◷</span>Activity</a></nav>');
       document.querySelectorAll('[data-strategy]').forEach(btn=>btn.addEventListener('click',()=>render(btn.dataset.strategy)));
+      document.getElementById('budget-form')?.addEventListener('submit',event=>{
+        event.preventDefault();
+        const form=new FormData(event.currentTarget);
+        const item={name:String(form.get('name')||'').trim(),amount:Number(form.get('amount')),category:String(form.get('category')||'Other'),dueDay:Number(form.get('dueDay'))};
+        if(!item.name||item.amount<=0||item.dueDay<1||item.dueDay>31) return;
+        data.monthly.bills.push(item);
+        localStorage.setItem('debt-hero-budget-v1',JSON.stringify(data.monthly.bills));
+        render(strategy);
+        document.getElementById('budget')?.scrollIntoView({behavior:'smooth'});
+      });
+      document.querySelectorAll('[data-budget-index]').forEach(btn=>btn.addEventListener('click',()=>{
+        data.monthly.bills.splice(Number(btn.dataset.budgetIndex),1);
+        localStorage.setItem('debt-hero-budget-v1',JSON.stringify(data.monthly.bills));
+        render(strategy);
+      }));
+      document.querySelectorAll('[data-payment-category]').forEach(select=>select.addEventListener('change',()=>{
+        data.payments[Number(select.dataset.paymentCategory)].category=select.value;
+        localStorage.setItem('debt-hero-payments-v1',JSON.stringify(data.payments));
+        render(strategy);
+      }));
+      document.querySelectorAll('[data-payment-status]').forEach(btn=>btn.addEventListener('click',()=>{
+        const payment=data.payments[Number(btn.dataset.paymentStatus)];
+        payment.status=payment.status==='cleared'?'pending':'cleared';
+        localStorage.setItem('debt-hero-payments-v1',JSON.stringify(data.payments));
+        render(strategy);
+      }));
       document.getElementById('share-ledger')?.addEventListener('click', async () => {
         const share={title:'Debt & Cash Flow Ledger',text:`Current debt: ${money(totalDebt)} · projected debt-free: ${p.finish}`};
         try { if(navigator.share) await navigator.share(share); else await navigator.clipboard.writeText(`${share.title}\n${share.text}`); }

@@ -6,7 +6,7 @@
   "scope": "./",
   "display": "standalone",
   "background_color": "#f3f0e8",
-  "theme_color": "#215c42",
+  "theme_color": "#123b78",
   "icons": [
     { "src": "ledger-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
   ]
